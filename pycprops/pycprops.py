@@ -14,9 +14,9 @@ warnings.simplefilter("ignore")
 np.seterr(all='ignore')
 
 def fits2props(cube_file,
+               mask_file,
                datadir=os.getcwd(),
                output_directory=os.getcwd(),
-               mask_file=None,
                noise_file=None,
                distance=None,
                asgnname=None,
@@ -36,7 +36,7 @@ def fits2props(cube_file,
 
     s = SpectralCube.read(datadir + '/' + cube_file)
     mask = fits.getdata(datadir + '/' + mask_file)
-
+    
     if allow_huge:
       s.allow_huge_operations = True
 
@@ -51,7 +51,7 @@ def fits2props(cube_file,
             delta = deltacut * noise.median().value
 
     distance_Mpc = distance.to(u.Mpc).value
-
+    
     # Cast to boolean
     nanmask = np.isnan(mask)
     mask = mask.astype(bool)

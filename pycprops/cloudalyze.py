@@ -146,6 +146,7 @@ def pa_moment(x, y, t):
     major = np.sqrt(evals[big])
     minor=np.sqrt(evals[1 - big])
     return(posang, major, minor)
+   
     
 def deconvolve_moments(moments, beam, pa, pixscale):
     if moments['rmsx_ex'] >= moments['rmsy_ex']:
@@ -190,6 +191,7 @@ def deconvolve_moments(moments, beam, pa, pixscale):
     outdict['pa_noex'] = (
         beam_noex.pa).to(u.rad).value
     return(outdict)
+
 
 def cloudalyze(cube, label, 
                distance=None,
